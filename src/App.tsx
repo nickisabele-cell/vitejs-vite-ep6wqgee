@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 // ==========================================
 // 1. CREDENCIAIS DO SEU BANCO DE DADOS REAL
@@ -9,10 +9,10 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 // ==========================================
 // 2. DEFINIÇÃO DOS TIPOS (TYPES)
 // ==========================================
-type FunnelType = 'Vendas' | 'Mega aula' | 'Programa corretor campeão' | 'Mentoria Dono';
-type TabType = 'dashboard' | 'kanban' | 'clientes' | 'produtos' | 'integracoes' | 'configuracoes';
+export type FunnelType = 'Vendas' | 'Mega aula' | 'Programa corretor campeão' | 'Mentoria Dono';
+export type TabType = 'dashboard' | 'kanban' | 'clientes' | 'produtos' | 'integracoes' | 'configuracoes';
 
-interface Customer {
+export interface Customer {
   id: string;
   name: string;
   email: string;
@@ -27,7 +27,7 @@ interface Customer {
   open_tickets_count: number;
 }
 
-interface ProductLink {
+export interface ProductLink {
   id: string;
   crmName: string;
   hotmartId: string;
@@ -35,7 +35,7 @@ interface ProductLink {
   origin: string;
 }
 
-interface MessageTemplate {
+export interface MessageTemplate {
   id: string;
   title: string;
   content: string;
@@ -425,7 +425,7 @@ export default function App() {
           </div>
         )}
 
-        {/* TELA 3: CONTATOS RESTAURADA COMPLETA E INTEGRADA AO DOSSIÊ */}
+        {/* TELA 3: CONTATOS */}
         {currentTab === 'clientes' && (
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '20px', marginBottom: '25px' }}>
@@ -506,7 +506,7 @@ export default function App() {
           </div>
         )}
 
-        {/* TELA 5: INTEGRAÇÕES TOTALMENTE RESTAURADA */}
+        {/* TELA 5: INTEGRAÇÕES */}
         {currentTab === 'integracoes' && (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px' }}>
             <div>
@@ -585,13 +585,13 @@ export default function App() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
                   <span>Aulas: {selectedCustomer.lessons_watched_percentage}%</span>
-                  <button onClick={() => handleQuickUpdateEngagement(selectedCustomer.id, 10, 0)} style={{ padding: '2px 6px', cursor: 'pointer' }}>+10%</button>
+                  <button onClick={() => handleQuickUpdateEngagement(selectedCustomer.id, 10, 0)} style={{ padding: '2px 6px', cursor: 'pointer', backgroundColor: '#f1f5f9', border: '1px solid #cbd5e1', borderRadius: '4px' }}>+10%</button>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
                   <span>Tickets Suporte: {selectedCustomer.open_tickets_count}</span>
                   <div style={{ display: 'flex', gap: '4px' }}>
-                    <button onClick={() => handleUpdateCSMetrics(selectedCustomer.id, 0, 1)} style={{ padding: '2px 6px', color: '#ef4444' }}>+1</button>
-                    {selectedCustomer.open_tickets_count > 0 && <button onClick={() => handleUpdateCSMetrics(selectedCustomer.id, 0, -1)} style={{ padding: '2px 6px', color: '#10b981' }}>-1</button>}
+                    <button onClick={() => handleUpdateCSMetrics(selectedCustomer.id, 0, 1)} style={{ padding: '2px 6px', color: '#ef4444', backgroundColor: '#fef2f2', border: '1px solid #fee2e2', borderRadius: '4px' }}>+1</button>
+                    {selectedCustomer.open_tickets_count > 0 && <button onClick={() => handleUpdateCSMetrics(selectedCustomer.id, 0, -1)} style={{ padding: '2px 6px', color: '#10b981', backgroundColor: '#f0fdf4', border: 'none', borderRadius: '4px' }}>-1</button>}
                   </div>
                 </div>
               </div>
